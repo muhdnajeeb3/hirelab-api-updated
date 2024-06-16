@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Form } from 'react-bootstrap';
 import Image from 'next/image';
-import GoogleMaps from 'simple-react-google-maps';
 import { useSession } from 'next-auth/react';
 
 function Companyprofile() {

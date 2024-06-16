@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link'
 import PageTitle from '../PageTitle';
 import bnr from '../../../src/images/banner/bnr1.jpg'
-import GoogleMaps from "simple-react-google-maps";
 
 function Contact(){
 	return(
