@@ -105,7 +105,7 @@ function Changepasswordpage(){
 									<div className="job-bx job-profile">
 										<div className="job-bx-title clearfix">
 											<h5 className="font-weight-700 pull-left text-uppercase">Change Password</h5>
-											<Link href={"/jobs-cv-manager"} className="site-button right-arrow button-sm float-right">Back</Link>
+											<Link href={"/jobs-cv-manager"} className="site-button right-arrow button-sm float-right" style={{fontFamily:'__Inter_Fallback_aaf875'}}>Back</Link>
 										</div>
 										<form method='post' onSubmit={handleSubmit}>
 											<div className="row">
@@ -117,7 +117,8 @@ function Changepasswordpage(){
 														onChange={(e) =>
 															setPasswordData({ ...passwordData, old_password: e.target.value })
 														  } 
-														 className="form-control" />
+														 className="form-control" 
+														 placeholder='Old Password'/>
 													</div>
 													<span className="text-red-500 text-danger">{errors?.old_password?.[0]}</span>
 												</div>
@@ -129,7 +130,8 @@ function Changepasswordpage(){
 														onChange={(e) =>
 															setPasswordData({ ...passwordData, password: e.target.value })
 														  } 
-														className="form-control"/>
+														className="form-control"
+														placeholder='New Password'/>
 														<span className="text-red-500 text-danger">{errors?.password?.[0]}</span>
 													</div>
 												<div className="col-lg-12">
@@ -139,12 +141,13 @@ function Changepasswordpage(){
 														name='password_confirmation'
 														onChange={(e) =>
 															setPasswordData({ ...passwordData, password_confirmation: e.target.value })
-														  } className="form-control"/>
+														  } className="form-control"
+														  placeholder='Confirm New Password'/>
 														  <span className="text-red-500 text-danger">{errors?.password_confirmation?.[0]}</span>
 													</div>
 												</div>
 												<div className="col-lg-12">
-													<button className="site-button"  style={{marginLeft: "-16px"}}>Update Password</button>
+													<button className="site-button"  style={{marginLeft: "-16px",fontFamily:'__Inter_Fallback_aaf875'}}>Update Password</button>
 												</div>
 												</div>
 											</div>
