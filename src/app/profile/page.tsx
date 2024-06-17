@@ -12,6 +12,7 @@ import { CustomSession } from "@/app/api/auth/[...nextauth]/authOptions";
 function Companyprofile() {
   const { data } = useSession();
   const userSession = data as CustomSession;
+  
   const [user,setUser] = useState({});
   const [profileData,setProfileData] = useState({
     company_name: "",
@@ -34,10 +35,12 @@ function Companyprofile() {
   useEffect(()=>{
     axios.post(CHECK_CREDENTIALS,{
       headers: {
-        Authorization:`Bearer ${userSession?.user.data.token}`,
+        Authorization:`Bearer ${userSession?.user?.data?.token}`,
       }
-    }).then((data) => {
-      setProfileData(data.data.user);
+    }).then((res) => {
+      console.log('check'+res.data.user);
+       
+      setProfileData(res.data.user);
       });
   },[]);
 

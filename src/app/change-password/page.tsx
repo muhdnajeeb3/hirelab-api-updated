@@ -28,9 +28,9 @@ function Changepasswordpage(){
     password_confirmation: "",
   });
   useEffect(()=>{
-    axios.get(CHECK_CREDENTIALS,{
+    axios.post(CHECK_CREDENTIALS,{
 		headers: {
-			Authorization:`Bearer ${userSession.user.data.token}`,
+			Authorization:`Bearer ${userSession?.user?.data?.token}`,
 		  }
     }).then((data) => {
       setUser(data.data.user);
@@ -43,7 +43,7 @@ function Changepasswordpage(){
 	
     axios.post(CHANGE_PASSWORD_URL, passwordData, {
       headers: {
-        Authorization:`Bearer ${userSession.user.data.token}`,
+        Authorization:`Bearer ${userSession?.user.data.token}`,
         Accept: "application/json",
       },
     })
@@ -83,7 +83,7 @@ function Changepasswordpage(){
 											<div className="candidate-detail text-center">
 												<div className="canditate-des">
 												<Link href={"#"}>
-													<Image src={`${IMAGE_URL}${user.image}`} alt="Company Logo" width={300} height={300} />
+													<Image src={`${IMAGE_URL}${user?.image}`} alt="Company Logo" width={300} height={300} />
 												</Link>
 													<div className="upload-link" title="update" data-toggle="tooltip" data-placement="right">
 														<input type="file" className="update-flie" />
@@ -92,7 +92,7 @@ function Changepasswordpage(){
 												</div>
 												<div className="candidate-title">
 													<div className="">
-														<h4 className="m-b5"><Link href={"#"}>{user.company_name}</Link></h4>
+														<h4 className="m-b5"><Link href={"#"}>{user?.company_name}</Link></h4>
 														{/* <p className="m-b0"><Link href={"#"}>Web developer</Link></p> */}
 													</div>
 												</div>

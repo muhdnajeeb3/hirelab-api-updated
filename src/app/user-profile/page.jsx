@@ -33,24 +33,22 @@ const ProfileDropdown = ({session}) => {
     };
   }, []);
 
-  const handleLoginUserViaLogout = () => {
-    console.log('logout');
-		// axios.post(LOGOUT_URL,{},{
-		// 	headers:{
-		// 		Authorization:`Bearer ${session.user.data.token}`
-		// 	}
-		// })
-		// .then((res) => {
-		// 	toast.success("Logout successfully!",{theme:"colored"})
-		// 	signOut({
-		// 		callbackUrl:'/login',
-		// 		redirect:true
-		// 	});
-		// })
-		// .catch((error) => {
-		// 	toast.error("Something Went Wrong.Please try again",{theme:'colored'});
-		// })
-		
+  const handleLogout = () => {
+		axios.get(LOGOUT_URL,{},{
+			headers:{
+				Authorization:`Bearer ${session.user.data.token}`
+			}
+		})
+		.then((res) => {
+			toast.success("Logout successfully!",{theme:"colored"})
+			signOut({
+				callbackUrl:'/login',
+				redirect:true
+			});
+		})
+		.catch((error) => {
+			toast.error("Something Went Wrong.Please try again",{theme:'colored'});
+		})
 	}
 
   return (
@@ -150,12 +148,11 @@ const ProfileDropdown = ({session}) => {
               </Link>
               <hr />
             </li>
-            {/* abhi@@@~~!$#$2 */}
             <li>
               <Link href="/logout">
                 <div className="menu-item">
                   {/* <LogoutIcon className="menu-icon" /> */}
-                  <span className="menu-text">Logout</span>
+                  <span onClick={handleLogout} className="menu-text">Logout</span>
                 </div>
               </Link>
             </li>

@@ -2,7 +2,7 @@ import Env from "./Env";
 
 export const API_URL = Env.API_URL + "/api";
 export const LOGIN_URL = API_URL + "/login";
-export const REGISTER_URL = API_URL + "/register";
+export const REGISTER_URL = API_URL + "/register1";
 export const CHECK_CREDENTIALS = API_URL + "/check-credentials";
 export const LOGOUT_URL = API_URL + "/logout";
 export const CATEGORY_URL = API_URL + "/categories";

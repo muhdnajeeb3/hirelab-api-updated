@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 function Profilesidebar(){
-	return(
+return(
 		<div className="col-xl-3 col-lg-4 m-b30">
 			<div className="sticky-top">
 				<div className="candidate-info">
