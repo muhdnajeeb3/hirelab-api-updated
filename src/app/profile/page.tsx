@@ -34,7 +34,7 @@ function Companyprofile() {
   useEffect(()=>{
     axios.post(CHECK_CREDENTIALS,{
       headers: {
-        Authorization:`Bearer ${userSession.user.data.token}`,
+        Authorization:`Bearer ${userSession?.user.data.token}`,
       }
     }).then((data) => {
       setProfileData(data.data.user);
@@ -107,7 +107,7 @@ function Companyprofile() {
   
   return (
     <>
-      <h1>{JSON.stringify(userSession)}</h1>
+      {/* <h1>{JSON.stringify(userSession)}</h1> */}
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">
