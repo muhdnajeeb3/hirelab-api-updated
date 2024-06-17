@@ -123,9 +123,9 @@ function Componypostjobs() {
   // 
 
   useEffect(()=>{
-    axios.get(CHECK_CREDENTIALS,{
+    axios.post(CHECK_CREDENTIALS,{
       headers: {
-        Authorization:`Bearer ${userSession.user.data.token}`,
+        Authorization:`Bearer ${userSession?.user?.data?.token}`,
       }
     }).then((data) => {
       setUser(data.data.user);
@@ -182,7 +182,7 @@ function Componypostjobs() {
                       <div className="candidate-detail text-center">
                         <div className="canditate-des">
                         <Link href={"#"}>
-                            <Image src={`${IMAGE_URL}${user.image}`} alt="Company Logo" width={300} height={300} />
+                            <Image src={`${IMAGE_URL}${user?.image}`} alt="Company Logo" width={300} height={300} />
                           </Link>
                           <div
                             className="upload-link"
