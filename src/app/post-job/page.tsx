@@ -261,6 +261,7 @@ function Componypostjobs() {
                       <Link
                         href={"/company-profile"}
                         className="site-button right-arrow button-sm float-right"
+                        style={{fontFamily:'__Inter_Fallback_aaf875'}}
                       >
                         Back
                       </Link>
@@ -573,6 +574,7 @@ function Componypostjobs() {
                             <input type="text" 
                             className="form-control"
                             name="candidate_requirement"
+                            placeholder="Requirement"
                             onChange={(e) =>
                               setProfileData({ ...profileData, candidate_requirement : e.target.value })
                             }
@@ -650,7 +652,7 @@ function Componypostjobs() {
                         <div className="col-lg-12 col-md-12">
                           <div className="form-group">
                             <label>Job Description</label>
-                            <textarea className="form-control" name='job_description'
+                            <textarea className="form-control" name='job_description' placeholder="Job Description"
                                     onChange={(e) =>
                                       setProfileData({ ...profileData, job_description : e.target.value })
                                     } ></textarea>
@@ -658,7 +660,7 @@ function Componypostjobs() {
                         </div>
                         <span className="text-red-500 text-danger">{errors?.job_description?.[0]}</span>
                       </div>
-                      <button type="submit" className="site-button m-b30">
+                      <button type="submit" className="site-button m-b30" style={{fontFamily:'__Inter_Fallback_aaf875'}}>
                         Upload
                       </button>
                     </form>

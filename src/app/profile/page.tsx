@@ -155,7 +155,7 @@ function Companyprofile() {
                   <div className="job-bx submit-resume">
                     <div className="job-bx-title clearfix">
                       <h5 className="font-weight-700 pull-left text-uppercase">SATYA'S Profile</h5>
-                      <Link href={"/company-profile"} className="site-button right-arrow button-sm float-right">Back</Link>
+                      <Link href={"/company-profile"} className="site-button right-arrow button-sm float-right" style={{fontFamily:'__Inter_Fallback_aaf875'}}>Back</Link>
                     </div>
                     
                       <div className="row m-b30">
@@ -244,6 +244,7 @@ function Companyprofile() {
                           <div className="form-group">
                             <label>Description:</label>
                             <textarea className="form-control" 
+                            placeholder='Description'
                             onChange={(e) =>
                               setProfileData({ ...profileData, description: e.target.value })
                             }
@@ -373,7 +374,7 @@ function Companyprofile() {
                           </div>
                         </div>
                       </div>
-                      <button type="submit" className="site-button m-b30">Update Setting</button>
+                      <button type="submit" className="site-button m-b30" style={{fontFamily:'__Inter_Fallback_aaf875'}}>Update Setting</button>
                     
                   </div>
                 </div>
