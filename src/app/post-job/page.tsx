@@ -3,16 +3,20 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Form } from "react-bootstrap";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { CHECK_CREDENTIALS, IMAGE_URL, JOB_POST_URL } from "@/lib/apiEndPoints";
 import { navigateSource } from "@/lib/action";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { CustomSession } from "@/app/api/auth/[...nextauth]/authOptions";
+import { toast } from "react-toastify";
 
 var teamImg = require("../../images/team/pic1.jpg");
 
 function Componypostjobs() {
+  const { data } = useSession();
+	const userSession = data as CustomSession;
   const [isHovered1, setIsHovered1] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const [isHovered3, setIsHovered3] = useState(false);
@@ -121,7 +125,7 @@ function Componypostjobs() {
   useEffect(()=>{
     axios.get(CHECK_CREDENTIALS,{
       headers: {
-        Authorization: `Bearer 151|pwNPoBxdOr9IR2xAMYZrZT7qS56GDvxOrsFuCCWv435ec04b`,
+        Authorization:`Bearer ${userSession.user.data.token}`,
       }
     }).then((data) => {
       setUser(data.data.user);
@@ -135,7 +139,7 @@ function Componypostjobs() {
     axios
     .post(JOB_POST_URL, profileData, {
       headers: {
-        Authorization:`Bearer ${data.user.data.token}`,
+        Authorization:`Bearer ${userSession.user.data.token}`,
         Accept: "application/json",
       },
     })
