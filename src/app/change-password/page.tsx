@@ -2,18 +2,20 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSession } from 'next-auth/react';
 import { CHANGE_PASSWORD_URL, CHECK_CREDENTIALS, IMAGE_URL } from '@/lib/apiEndPoints';
 import { navigateSource } from '@/lib/action';
 import axios from 'axios';
 import 'react-toastify/ReactToastify.min.css'
+import { useSession } from "next-auth/react";
+import { CustomSession } from "@/app/api/auth/[...nextauth]/authOptions";
 
 import { ToastContainer, toast } from 'react-toastify';
 
 
 function Changepasswordpage(){
 	
-  const {data} = useSession();
+	const { data } = useSession();
+	const userSession = data as CustomSession;
   const [user,setUser] = useState({});
   const [errors, setErrors] = useState({
     old_password: "",
@@ -27,9 +29,9 @@ function Changepasswordpage(){
   });
   useEffect(()=>{
     axios.get(CHECK_CREDENTIALS,{
-      headers: {
-        Authorization: `Bearer 151|pwNPoBxdOr9IR2xAMYZrZT7qS56GDvxOrsFuCCWv435ec04b`,
-      }
+		headers: {
+			Authorization:`Bearer ${userSession.user.data.token}`,
+		  }
     }).then((data) => {
       setUser(data.data.user);
       });
@@ -41,7 +43,7 @@ function Changepasswordpage(){
 	
     axios.post(CHANGE_PASSWORD_URL, passwordData, {
       headers: {
-        Authorization:`Bearer 151|pwNPoBxdOr9IR2xAMYZrZT7qS56GDvxOrsFuCCWv435ec04b`,
+        Authorization:`Bearer ${userSession.user.data.token}`,
         Accept: "application/json",
       },
     })

@@ -34,14 +34,14 @@ function Companyprofile() {
   useEffect(()=>{
     axios.post(CHECK_CREDENTIALS,{
       headers: {
-        // Authorization: `Bearer ${userSession?.user?.data?.token}`,
+        Authorization:`Bearer ${userSession.user.data.token}`,
       }
     }).then((data) => {
       setProfileData(data.data.user);
       });
   },[]);
 
-  console.log('session user'+userSession);
+  // console.log('session user'+userSession);
 
   
   const [errors, setErrors] = useState({
@@ -107,7 +107,7 @@ function Companyprofile() {
   
   return (
     <>
-      {/* <h1>{JSON.stringify()}</h1> */}
+      <h1>{JSON.stringify(userSession)}</h1>
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">
