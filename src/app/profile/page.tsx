@@ -32,7 +32,7 @@ function Companyprofile() {
     linkedin : "",
   });
   useEffect(()=>{
-    axios.get(CHECK_CREDENTIALS,{
+    axios.post(CHECK_CREDENTIALS,{
       headers: {
         // Authorization: `Bearer ${userSession?.user?.data?.token}`,
       }
@@ -120,7 +120,7 @@ function Companyprofile() {
                       <div className="candidate-detail text-center">
                         <div className="canditate-des">
                           <Link href={"#"}>
-                            <Image src={`${IMAGE_URL}${profileData.image}`} alt="Company Logo" width={300} height={300} />
+                            <Image src={`${IMAGE_URL}${profileData?.image}`} alt="Company Logo" width={300} height={300} />
                           </Link>
                          
                         </div>
@@ -164,7 +164,7 @@ function Companyprofile() {
                             <label>Company Name</label>
                             <input type="text" 
                               name="company_name" 
-                              value={profileData.company_name}
+                              value={profileData?.company_name}
                               className="form-control"
                               onChange={(e) =>
                                 setProfileData({ ...profileData, company_name: e.target.value })
@@ -177,7 +177,7 @@ function Companyprofile() {
                             <label>Your Email</label>
                             <input type="email"
                             name="email" 
-                            value={profileData.email}
+                            value={profileData?.email}
                             onChange={(e) =>
                               setProfileData({ ...profileData, email: e.target.value })
                             } 
@@ -190,7 +190,7 @@ function Companyprofile() {
                             <label>Website</label>
                             <input type="text"
                             name="website"
-                            value={profileData.website}
+                            value={profileData?.website}
                             onChange={(e) =>
                               setProfileData({ ...profileData, website: e.target.value })
                             } 
@@ -202,7 +202,7 @@ function Companyprofile() {
                             <label>Founded Date </label>
                             <input type="text" 
                             name="founded_date" 
-                            value={profileData.founded_date}
+                            value={profileData?.founded_date}
                             className="form-control" 
                             onChange={(e) =>
                               setProfileData({ ...profileData, founded_date: e.target.value })
@@ -222,9 +222,9 @@ function Companyprofile() {
                             className="custom-select">
                             <option value="">Select Category</option>
                             
-                             <option value="1" selected={profileData.category_id == '1'}>Website Design</option>
-                             <option value="2" selected={profileData.category_id == '2'}>Website Development</option>
-                             <option value="3" selected={profileData.category_id == '3'}>App Development</option>
+                             <option value="1" selected={profileData?.category_id == '1'}>Website Design</option>
+                             <option value="2" selected={profileData?.category_id == '2'}>Website Development</option>
+                             <option value="3" selected={profileData?.category_id == '3'}>App Development</option>
                             </Form.Control>
                           </div>
                         </div>
@@ -247,7 +247,7 @@ function Companyprofile() {
                             onChange={(e) =>
                               setProfileData({ ...profileData, description: e.target.value })
                             }
-                            name="description" value={profileData.description} rows="4">{profileData.description}</textarea>
+                            name="description" value={profileData?.description} rows="4">{profileData?.description}</textarea>
                           </div>
                         </div>
                       </div>
@@ -260,7 +260,7 @@ function Companyprofile() {
                             <label>Phone</label>
                             <input type="text" 
                             name="mobile_number"
-                            value={profileData.mobile_number}
+                            value={profileData?.mobile_number}
                             onChange={(e) =>
                               setProfileData({ ...profileData, mobile_number: e.target.value })
                             } 
@@ -273,7 +273,7 @@ function Companyprofile() {
                           <div className="form-group">
                             <label>Country</label>
                             <input type="text"
-                            value={profileData.country}
+                            value={profileData?.country}
                             onChange={(e) =>
                               setProfileData({ ...profileData, country: e.target.value })
                             } 
@@ -285,7 +285,7 @@ function Companyprofile() {
                             <label>City</label>
                             <input type="text" 
                             name="city"
-                            value={profileData.city}
+                            value={profileData?.city}
                             onChange={(e) =>
                               setProfileData({ ...profileData, city: e.target.value })
                             } 
@@ -297,7 +297,7 @@ function Companyprofile() {
                             <label>Zip</label>
                             <input type="text" 
                             name="zip"
-                            value={profileData.zip}
+                            value={profileData?.zip}
                             onChange={(e) =>
                               setProfileData({ ...profileData, zip: e.target.value })
                             } 
@@ -309,7 +309,7 @@ function Companyprofile() {
                             <label>Address</label>
                             <input type="text" 
                             name="address"
-                            value={profileData.address}
+                            value={profileData?.address}
                             onChange={(e) =>
                               setProfileData({ ...profileData, address: e.target.value })
                             }  
@@ -333,7 +333,7 @@ function Companyprofile() {
                           <div className="form-group">
                             <label>Facebook</label>
                             <input type="text" name="facebook" 
-                            value={profileData.facebook}
+                            value={profileData?.facebook}
                              onChange={(e) =>
                               setProfileData({ ...profileData, facebook: e.target.value })
                             } 
@@ -345,7 +345,7 @@ function Companyprofile() {
                             <label>Twitter</label>
                             <input type="text"
                              name="twitter" 
-                             value={profileData.twitter}
+                             value={profileData?.twitter}
                              onChange={(e) =>
                               setProfileData({ ...profileData, twitter: e.target.value })
                             } 
@@ -367,7 +367,7 @@ function Companyprofile() {
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>Linkedin</label>
-                            <input type="text" name="linkedin" value={profileData.linkedin} onChange={(e) =>
+                            <input type="text" name="linkedin" value={profileData?.linkedin} onChange={(e) =>
                               setProfileData({ ...profileData, linkedin: e.target.value })
                             }  className="form-control" placeholder="https://www.linkedin.com/" />
                           </div>
