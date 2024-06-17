@@ -9,14 +9,19 @@ export interface CustomSession {
   expires: ISODateString;
 }
 export interface CustomUser {
-  id?: string | null;
-  name?: string | null;
-  email?: string | null;
-  image?: string | null;
-  mobile_number?: string | null;
-  token?: string | null;
-  created_at?: string | null;
-  updated_at?: string | null;
+  code?: number;
+  success?: boolean;
+  message?: string;
+  data?: {
+    id?: string | null;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    mobile_number?: string | null;
+    token?: string | null;
+    created_at?: string | null;
+    updated_at?: string | null;
+  };
 }
 export const authOptions: AuthOptions = {
   pages: {
@@ -30,15 +35,7 @@ export const authOptions: AuthOptions = {
       return token;
     },
 
-    async session({
-      session,
-      token,
-      user,
-    }: {
-      session: CustomSession;
-      token: JWT;
-      user: User;
-    }) {
+    async session({ session, token }) {
       session.user = token.user as CustomUser;
       return session;
     },
@@ -48,15 +45,14 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {},
-        mobile_number: {},
+        email: { label: "Email", type: "email" },
+        mobile_number: { label: "Mobile Number", type: "text" },
       },
       async authorize(credentials, req) {
         const res = await axios.post(LOGIN_URL, credentials);
         const response = res.data;
-        const user = response;
-        if (user) {
-          return user;
+        if (response) {
+          return response.user;
         } else {
           return null;
         }

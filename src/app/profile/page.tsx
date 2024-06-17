@@ -32,17 +32,28 @@ function Companyprofile() {
     google : "",
     linkedin : "",
   });
-  useEffect(()=>{
-    axios.post(CHECK_CREDENTIALS,{
-      headers: {
-        Authorization:`Bearer ${userSession?.user?.data?.token}`,
-      }
-    }).then((res) => {
-      console.log('check'+res.data.user);
-       
-      setProfileData(res.data.user);
+  useEffect(() => {
+    if (userSession?.user?.data?.token) {
+    console.log('userSessiontop',userSession?.user?.data?.token);
+
+      axios.post(CHECK_CREDENTIALS, {}, {
+        headers: {
+          Authorization: `Bearer ${userSession.user.data.token}`,
+        },
+      }).then((res) => {
+        console.log('check', res);
+        setProfileData(res.data.user);
+      }).catch((err) => {
+        console.error('Error checking credentials', err);
+        toast.error("Failed to fetch profile data");
       });
-  },[]);
+    } else {
+      console.error('User session or token is undefined');
+      toast.error("User session or token is undefined");
+    }
+    console.log('userSession',userSession?.user?.data?.token);
+    
+  }, [userSession]);
 
   // console.log('session user'+userSession);
 

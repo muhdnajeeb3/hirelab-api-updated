@@ -27,15 +27,28 @@ function Changepasswordpage(){
     password : "",
     password_confirmation: "",
   });
-  useEffect(()=>{
-    axios.post(CHECK_CREDENTIALS,{
-		headers: {
-			Authorization:`Bearer ${userSession?.user?.data?.token}`,
-		  }
-    }).then((data) => {
-      setUser(data.data.user);
+//   useEffect(()=>{
+//     axios.post(CHECK_CREDENTIALS,{
+// 		headers: {
+// 			Authorization:`Bearer ${userSession?.user?.data?.token}`,
+// 		  }
+//     }).then((data) => {
+//       setUser(data.data.user);
+//       });
+//   },[]); 
+useEffect(() => {
+    if (userSession?.user?.data?.token) {
+      axios.get(CHECK_CREDENTIALS, {
+        headers: {
+          Authorization: `Bearer ${userSession.user.data.token}`,
+        },
+      }).then((data) => {
+        setUser(data.data.user);
+      }).catch((error) => {
+        console.error('Error fetching data', error);
       });
-  },[]); 
+    }
+  }, [userSession]);
   const [loading,setLoading] = useState(false);
   //console.log(CHANGE_PASSWORD_URL);
   const handleSubmit = (event) => {
