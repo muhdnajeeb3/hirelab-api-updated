@@ -13,20 +13,16 @@ const nextConfig = {
         ]
     },
     typescript: {
-        // !! WARN !!
-        // Dangerously allow production builds to successfully complete even if
-        // your project has type errors.
-        // !! WARN !!
         ignoreBuildErrors: true,
     },
-    distDir: ".next", // Ensure you really need this; otherwise, consider removing it
+    // Remove or comment out distDir to use the default .next directory
+    // distDir: "build",
 
-    // Add logging for debugging
     webpack(config, options) {
         console.log('Building project with Next.js version:', require('next/package.json').version);
         console.log('Dist Directory:', options.config.distDir);
         return config;
     }
-}
+};
 
 module.exports = nextConfig;
