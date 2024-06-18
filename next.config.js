@@ -19,7 +19,7 @@ const nextConfig = {
         // !! WARN !!
         ignoreBuildErrors: true,
     },
-    // distDir: "build", // Ensure you really need this; otherwise, consider removing it
+    distDir: ".next", // Ensure you really need this; otherwise, consider removing it
 
     // Add logging for debugging
     webpack(config, options) {
