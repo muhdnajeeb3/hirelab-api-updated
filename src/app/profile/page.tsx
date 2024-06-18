@@ -12,7 +12,7 @@ import { CustomSession } from "@/app/api/auth/[...nextauth]/authOptions";
 function Companyprofile() {
   const { data } = useSession();
   const userSession = data as CustomSession;
-  
+  let token = userSession?.user?.data?.token;
   const [user,setUser] = useState({});
   const [profileData,setProfileData] = useState({
     company_name: "",
@@ -33,12 +33,12 @@ function Companyprofile() {
     linkedin : "",
   });
   useEffect(() => {
-    if (userSession?.user?.data?.token) {
-    console.log('userSessiontop',userSession?.user?.data?.token);
+    if (token) {
+    console.log('userSessiontop',token);
 
       axios.post(CHECK_CREDENTIALS, {}, {
         headers: {
-          Authorization: `Bearer ${userSession.user.data.token}`,
+          Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         console.log('check', res);
@@ -51,9 +51,9 @@ function Companyprofile() {
       console.error('User session or token is undefined');
       toast.error("User session or token is undefined");
     }
-    console.log('userSession',userSession?.user?.data?.token);
+    console.log('profile Data',profileData);
     
-  }, [userSession]);
+  }, [token]);
 
   // console.log('session user'+userSession);
 
@@ -121,7 +121,6 @@ function Companyprofile() {
   
   return (
     <>
-      {/* <h1>{JSON.stringify(userSession)}</h1> */}
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">

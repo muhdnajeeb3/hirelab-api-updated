@@ -8,10 +8,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { LOGOUT_URL } from "@/lib/apiEndPoints";
 import { signOut } from "next-auth/react";
+import { CustomUser } from "@/app/api/auth/[...nextauth]/authOptions";
 
-const ProfileDropdown = ({session}) => {
- 
-  
+const ProfileDropdown = ({ sessionUser }: { sessionUser: CustomUser }) => {  
+  // console.log('profi;e',sessionUser);
   const [isOpen, setIsOpen] = useState(true);
   const dropdownRef = useRef(null);
 
@@ -33,25 +33,35 @@ const ProfileDropdown = ({session}) => {
     };
   }, []);
 
-  const handleLogout = () => {
-		axios.get(LOGOUT_URL,{},{
-			headers:{
-				Authorization:`Bearer ${session.user.data.token}`
-			}
-		})
-		.then((res) => {
-			toast.success("Logout successfully!",{theme:"colored"})
-			signOut({
-				callbackUrl:'/login',
-				redirect:true
-			});
-		})
-		.catch((error) => {
-			toast.error("Something Went Wrong.Please try again",{theme:'colored'});
-		})
-	}
+  const logoutUser = () => {
+    axios
+      .post(
+        LOGOUT_URL,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${sessionUser?.token}`
+          },
+        }
+      )
+      .then((res) => {
+        const response = res.data;
+        if (response?.status === 200) {
+          signOut({ callbackUrl: "/login" });
+          toast.success("Logged out successfully!", { theme: "colored" });
+        }
+      })
+      .catch((err) => {
+        // toast.error("Something went wrong.please try again", {
+        //   theme: "colored",
+        // });
+      });
+
+    signOut({ redirect: true, callbackUrl: "/login" });
+  };
 
   return (
+    
     <div className="profile-dropdown" ref={dropdownRef}>
       <div className="profile-header" onClick={toggleDropdown}>
         <Image src={profilePic} className="profile-image" alt="Profile Image" style={{ width: "41px", height: "41px" }} />
@@ -72,7 +82,7 @@ const ProfileDropdown = ({session}) => {
         <div className="profile-sidebar">
           <div className="profile-details">
             <Image src={profilePic} className="profile-image-large" alt="Profile Image" />
-            <h2 className="profile-name-tab">{session.user.data.name}</h2>
+            <h2 className="profile-name-tab">{sessionUser?.user?.data?.name}</h2>
             
           </div>
           <ul className="profile-menu">
@@ -149,12 +159,12 @@ const ProfileDropdown = ({session}) => {
               <hr />
             </li>
             <li>
-              <Link href="/logout">
+              {/* <Link href="/logout"> */}
                 <div className="menu-item">
                   {/* <LogoutIcon className="menu-icon" /> */}
-                  <span onClick={handleLogout} className="menu-text">Logout</span>
+                  <span onClick={logoutUser} className="menu-text">Logout</span>
                 </div>
-              </Link>
+              {/* </Link> */}
             </li>
           </ul>
         </div>
@@ -251,5 +261,5 @@ const ProfileDropdown = ({session}) => {
     </div>
   );
 };
-
 export default ProfileDropdown;
+// ProfileDropdown;
