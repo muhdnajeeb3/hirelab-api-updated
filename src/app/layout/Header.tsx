@@ -8,10 +8,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { signOut } from "next-auth/react";
 import { LOGOUT_URL } from "@/lib/apiEndPoints";
-import ProfileDropdown from "../user-profile/page";
+import ProfileDropdown from "@/app/user-profile/page";
 var bnr3 = require("./../../images/background/bg3.jpg");
 
 export default function Header({session}: { session: CustomSession | null }) {
+    // console.log('header token',); 
+    // update header 
     return (
       <>
         <header className="site-header mo-left header fullwidth">
@@ -46,10 +48,12 @@ export default function Header({session}: { session: CustomSession | null }) {
                 <div className="extra-nav">
                   <div className="extra-cell">
                   {session && session.user.data.email !== null ? (
-                    <ProfileDropdown session={session} />
+                    <ProfileDropdown sessionUser={session.user.data} />
+                    
                   ) : (
                     <Link href="/login" className="site-button">LOGIN/SIGN UP</Link>
-                  )}   
+                  )} 
+                  
                   </div>
                 </div>
 
