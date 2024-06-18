@@ -12,7 +12,8 @@ import ProfileDropdown from "@/app/user-profile/page";
 var bnr3 = require("./../../images/background/bg3.jpg");
 
 export default function Header({session}: { session: CustomSession | null }) {
-    console.log('header token',);  
+    // console.log('header token',); 
+    // update header 
     return (
       <>
         <header className="site-header mo-left header fullwidth">
